@@ -1,0 +1,7 @@
+*.tar
+*.gz
+__pycache__/
+.venv/
+.ipynb_checkpoints/
+*.pyc
+.pytest_cache/
