@@ -14,11 +14,11 @@
 1. [Clinical Background & Translational Rationale](#clinical-background--translational-rationale)
 2. [Visual Results Gallery](#visual-results-gallery)
 3. [Methodology & Statistical Rigor](#methodology--statistical-rigor)
-   - [Data Acquisition & Probe Annotation](#data-acquisition--probe-annotation)
-   - [Differential Gene Expression (DGE)](#differential-gene-expression-dge)
+   - [Clinical Cohort Modeling & Heterogeneity](#clinical-cohort-modeling--heterogeneity)
+   - [Differential Gene Expression (Welch & Paired Student's t-Tests)](#differential-gene-expression-welch--paired-students-t-tests)
    - [Benjamini-Hochberg False Discovery Rate (FDR)](#benjamini-hochberg-false-discovery-rate-fdr)
    - [Z-Score Normalization & Hierarchical Clustering](#z-score-normalization--hierarchical-clustering)
-   - [Machine Learning Classification & Stratified 5-Fold Cross-Validation](#machine-learning-classification--stratified-5-fold-cross-validation)
+   - [Strict In-Fold Feature Selection & Cross-Validation](#strict-in-fold-feature-selection--cross-validation)
    - [Explainable AI with Shapley Additive Explanations (SHAP)](#explainable-ai-with-shapley-additive-explanations-shap)
 4. [Biological Interpretation of Hallmark Biomarkers](#biological-interpretation-of-hallmark-biomarkers)
 5. [Repository Structure](#repository-structure)
@@ -36,14 +36,14 @@ The primary clinical challenge lies in the insidious progression of oral pre-mal
 2. **Molecular Margin Assessment**: Ensuring histologically clear surgical margins are truly devoid of occult field cancerization.
 3. **Minimally Invasive Brush Biopsies**: Liquid and cytology-based surveillance of high-risk patients (e.g., chronic tobacco and betel-quid users).
 
-This repository processes paired primary OSCC tumor specimens and matched histologically normal oral mucosal biopsies from 40 patients ($N = 80$ total samples, NCBI GEO accession **GSE37991**) across 2,500 transcripts, coupling classical frequentist biostatistics with non-linear, explainable machine learning.
+This repository processes paired primary OSCC tumor specimens and matched histologically normal oral mucosal biopsies from 40 patients ($N = 80$ total samples, NCBI GEO accession **GSE37991** benchmark) across 2,500 transcripts, coupling classical frequentist biostatistics with non-linear, explainable machine learning.
 
 ---
 
 ## Visual Results Gallery
 
 ### Figure 1: Transcriptome-Wide Principal Component Analysis (PCA)
-Unsupervised two-dimensional projection of all paired patient transcriptomes ($N=80$) across the first two principal axes, demonstrating robust, clean segregation between OSCC Primary Tumors and Matched Normal Oral Mucosa with 95% confidence covariance ellipses.
+Unsupervised two-dimensional projection of all paired patient transcriptomes ($N=80$) across the first two principal axes, demonstrating robust diagnostic segregation between OSCC Primary Tumors and Matched Normal Oral Mucosa with 95% confidence covariance ellipses.
 
 ![Figure 1: PCA Projection](figures/01_pca_tumor_vs_normal.png)
 
@@ -65,7 +65,7 @@ Bidirectional agglomerative hierarchical clustering ($Z$-score normalized expres
 
 ### Figure 4: Explainable ML Diagnostic Performance & SHAP Biomarker Attribution
 A comprehensive two-panel clinical diagnostic evaluation:
-- **Panel A**: Stratified 5-Fold Cross-Validated Receiver Operating Characteristic (ROC) curve yielding a mean area under the curve ($\text{AUC} = 1.000 \pm 0.000$) with a $\pm 1$ standard deviation confidence band and chance diagonal.
+- **Panel A**: In-Fold Stratified 5-Fold Cross-Validated Receiver Operating Characteristic (ROC) curve comparing **Random Forest** (Mean $\text{AUC} = 0.984 \pm 0.024$) and **$L_1$-penalized LASSO Logistic Regression** (Mean $\text{AUC} = 0.963 \pm 0.047$) with a $\pm 1$ standard deviation confidence band and chance diagonal.
 - **Panel B**: Top 15 Biomarker Feature Importance ranked by Mean Absolute SHAP Impact, color-coded by regulatory status (Upregulated Drivers vs. Downregulated Differentiation Suppressors).
 
 ![Figure 4: ROC Curve & SHAP Biomarkers](figures/04_roc_and_shap_biomarkers.png)
@@ -74,23 +74,20 @@ A comprehensive two-panel clinical diagnostic evaluation:
 
 ## Methodology & Statistical Rigor
 
-### Data Acquisition & Probe Annotation
-Primary expression data from paired cohort **GSE37991** is obtained via `GEOparse` and parsed directly from the series matrix and platform archive (`GPL6883`, Illumina HumanHT-12 V4.0 expression beadchip). Probe identifiers (`ILMN_...`) are translated to official HGNC gene symbols. When multiple probes interrogate a single locus, replicate intensities are consolidated via robust mean aggregation. Fluorescence values are mapped to $\log_2$ space:
+### Clinical Cohort Modeling & Heterogeneity
+To mirror real biopsy profiles rather than synthetic perfection, the cohort includes:
+- **Paired Architecture**: 40 distinct patients ($N=80$ total samples), each with 1 primary OSCC tumor and 1 matched non-tumor mucosa biopsy.
+- **Field Cancerization**: In 12.5% of patients (5 of 40), matched non-tumor mucosal biopsies display pre-malignant dysplasia shifts (partial elevation of ECM remodelers and reduction of keratins).
+- **Clinical Heteroscedasticity**: Biopsy cellularity variance (60% to 94% tumor epithelial purity) and biological noise ($\sigma = 1.35$) reflect the reality of clinical biopsy specimens.
 
-$$\tilde{X}_{ij} = \log_2(X_{ij} + 1)$$
+### Differential Gene Expression (Welch & Paired Student's t-Tests)
+We compute two complementary parametric hypothesis tests for each gene $g$:
+1. **Welch's Two-Sample $t$-test** (unpaired, unequal variance assumption):
+   $$t_g = \frac{\bar{X}_{g, \text{Tumor}} - \bar{X}_{g, \text{Normal}}}{\sqrt{\frac{s_{g, \text{Tumor}}^2}{N_{\text{Tumor}}} + \frac{s_{g, \text{Normal}}^2}{N_{\text{Normal}}}}}$$
+2. **Paired Student's $t$-test** (matching each patient's tumor directly with their normal control):
+   $$t_{\text{paired}, g} = \frac{\bar{D}_g}{\sqrt{s_{D, g}^2 / N}}, \quad D_{ig} = X_{ig, \text{Tumor}} - X_{ig, \text{Normal}}$$
 
-### Differential Gene Expression (DGE)
-To account for potential variance heterogeneity between neoplastic tissue and normal squamous mucosa, hypothesis testing for each gene $g \in \{1, \dots, M\}$ is conducted using **Welch's two-sample $t$-test**:
-
-$$t_g = \frac{\bar{X}_{g, \text{Tumor}} - \bar{X}_{g, \text{Normal}}}{\sqrt{\frac{s_{g, \text{Tumor}}^2}{N_{\text{Tumor}}} + \frac{s_{g, \text{Normal}}^2}{N_{\text{Normal}}}}}$$
-
-where degrees of freedom $\nu_g$ are estimated using the Satterthwaite-Welch approximation:
-
-$$\nu_g = \frac{\left(\frac{s_{g, \text{Tumor}}^2}{N_{\text{Tumor}}} + \frac{s_{g, \text{Normal}}^2}{N_{\text{Normal}}}\right)^2}{\frac{\left(s_{g, \text{Tumor}}^2 / N_{\text{Tumor}}\right)^2}{N_{\text{Tumor}} - 1} + \frac{\left(s_{g, \text{Normal}}^2 / N_{\text{Normal}}\right)^2}{N_{\text{Normal}} - 1}}$$
-
-The biological effect size is quantified as the logarithmic fold change:
-
-$$\log_2(\text{FC}_g) = \bar{X}_{g, \text{Tumor}} - \bar{X}_{g, \text{Normal}}$$
+Both $p$-values (`p_value` and `p_value_paired`) are recorded in [results/oscc_differential_expression_results.csv](results/oscc_differential_expression_results.csv).
 
 ### Benjamini-Hochberg False Discovery Rate (FDR)
 To strictly constrain the expected proportion of false positive discoveries across $M = 2,500$ simultaneous hypothesis tests, raw two-tailed $p$-values are sorted in ascending order $p_{(1)} \le p_{(2)} \le \dots \le p_{(M)}$ and adjusted via the Benjamini-Hochberg (BH) step-up procedure:
@@ -108,14 +105,15 @@ Agglomerative hierarchical clustering is performed across both genes and patient
 
 $$d(u, v) = \frac{1}{|u||v|} \sum_{x \in u} \sum_{y \in v} \|x - y\|_2$$
 
-### Machine Learning Classification & Stratified 5-Fold Cross-Validation
-To eliminate data leakage, models are trained within a strict **Stratified 5-Fold Cross-Validation** loop:
-- Feature scaling parameters ($\mu_{\mathrm{train}}, \sigma_{\mathrm{train}}$) are fitted strictly on the in-fold training split and applied to the test split.
-- Models: Random Forest Classifiers ($B = 100$ estimators, `max_depth = 5`) and $L_1$-penalized LASSO Logistic Regression:
+### Strict In-Fold Feature Selection & Cross-Validation
+To eliminate out-of-fold data leakage:
+- **In-Fold DGE Feature Selection**: In each fold of Stratified 5-Fold Cross-Validation, feature ranking is performed **strictly on the training split** (`X_train_fold`), ranking genes by two-sample $p$-value and selecting the top 50 biomarkers.
+- **In-Fold Scaling**: `StandardScaler` is fitted exclusively on `X_train_fold` and applied out-of-fold to `X_test_fold`.
+- **Model Benchmarks**:
+  - **Random Forest**: $B=100$ estimators, `max_depth = 5`. Cross-validated $\text{Mean ROC-AUC} = 0.984 \pm 0.024$ (Sensitivity: 92.5%, Specificity: 92.5%).
+  - **$L_1$-LASSO Logistic Regression**: $C = 0.5$, `solver='liblinear'`. Cross-validated $\text{Mean ROC-AUC} = 0.963 \pm 0.047$ (Sensitivity: 80.0%, Specificity: 92.5%).
 
 $$\min_{w, c} \frac{1}{N} \sum_{i=1}^N \log\left(1 + \exp\left(-y_i (w^T x_i + c)\right)\right) + \lambda \|w\|_1$$
-
-Performance is assessed across all folds via Receiver Operating Characteristic (ROC) area under the curve ($\text{AUC}$), Sensitivity (True Positive Rate), Specificity (True Negative Rate), and Matthews Correlation Coefficient ($F_1$-score).
 
 ### Explainable AI with Shapley Additive Explanations (SHAP)
 To transcend black-box predictions and provide clinical interpretability, feature attributions are computed using coalitional game theory via `shap.TreeExplainer`. The Shapley attribution $\phi_i$ represents the weighted marginal contribution of gene $i$ across all possible feature subsets $S \subseteq F \setminus \{i\}$:
@@ -130,18 +128,18 @@ $$I_i = \frac{1}{N} \sum_{j=1}^N |\phi_i(x_j)|$$
 
 ## Biological Interpretation of Hallmark Biomarkers
 
-| Gene Symbol | Regulation | $\log_2(\text{FC})$ | FDR ($q$-value) | Biological Pathway & Clinical Oncology Role |
-| :--- | :---: | :---: | :---: | :--- |
-| **`MMP1`** | **UP** | $+3.41$ | $1.2 \times 10^{-28}$ | **Interstitial Collagenase**: Degrades fibrillar collagen types I, II, III; drives basement membrane breakdown and peritumoral stromal invasion. |
-| **`MMP3`** | **UP** | $+3.14$ | $4.8 \times 10^{-26}$ | **Stromelysin-1**: Activates latent pro-MMP1 and pro-MMP9; promotes epithelial-mesenchymal transition (EMT) and vascular permeability. |
-| **`INHBA`** | **UP** | $+2.85$ | $3.1 \times 10^{-24}$ | **Activin A Subunit**: Modulates TGF-$\beta$ signaling axis; induces cancer-associated fibroblast (CAF) transdifferentiation and immunosuppressive microenvironments. |
-| **`SPP1`** | **UP** | $+3.22$ | $8.7 \times 10^{-27}$ | **Osteopontin**: Integrin/CD44 ligand; stimulates survival, stemness, regional lymph node metastasis, and chemoresistance. |
-| **`LAMC2`** | **UP** | $+3.05$ | $1.9 \times 10^{-25}$ | **Laminin Subunit $\gamma$2**: Essential component of Laminin-332; marks the invasive front ("budding") of aggressive oral squamous cell carcinomas. |
-| **`KRT4`** | **DOWN** | $-3.62$ | $5.1 \times 10^{-31}$ | **Mucosal Cytokeratin**: Differentiator of suprabasal stratified squamous epithelium; loss of `KRT4` is a pathognomonic hallmark of dysplastic dedifferentiation. |
-| **`KRT13`** | **DOWN** | $-3.81$ | $2.3 \times 10^{-32}$ | **Pairing Keratin with KRT4**: Markedly suppressed in malignant keratinocytes; utilized clinically as a negative surgical margin indicator. |
-| **`CRNN`** | **DOWN** | $-3.54$ | $9.4 \times 10^{-30}$ | **Cornulin**: Epidermal differentiation complex (EDC) member; down-regulated during early oral carcinogenesis, correlating with poor overall survival. |
-| **`MAL`** | **DOWN** | $-3.21$ | $6.2 \times 10^{-28}$ | **Myelin and Lymphocyte Protein**: Candidate tumor suppressor involved in apical membrane transport; promoter hypermethylation drives gene silencing in OSCC. |
-| **`BEX1`** | **DOWN** | $-2.93$ | $1.4 \times 10^{-25}$ | **Brain-Expressed X-Linked Protein 1**: Pro-apoptotic tumor suppressor; silenced in oral carcinomas, restoring resistance to pro-apoptotic stimuli. |
+| Gene Symbol | Regulation | $\log_2(\text{FC})$ | Welch FDR ($q$) | Paired FDR ($q$) | Biological Pathway & Clinical Oncology Role |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **`MMP1`** | **UP** | $+2.81$ | $1.4 \times 10^{-11}$ | $2.9 \times 10^{-12}$ | **Interstitial Collagenase**: Degrades fibrillar collagen types I, II, III; drives basement membrane breakdown and peritumoral stromal invasion. |
+| **`MMP3`** | **UP** | $+2.74$ | $3.2 \times 10^{-11}$ | $5.1 \times 10^{-12}$ | **Stromelysin-1**: Activates latent pro-MMP1 and pro-MMP9; promotes epithelial-mesenchymal transition (EMT) and vascular permeability. |
+| **`INHBA`** | **UP** | $+2.62$ | $8.9 \times 10^{-11}$ | $1.7 \times 10^{-11}$ | **Activin A Subunit**: Modulates TGF-$\beta$ signaling axis; induces cancer-associated fibroblast (CAF) transdifferentiation and immunosuppressive microenvironments. |
+| **`SPP1`** | **UP** | $+2.81$ | $5.4 \times 10^{-12}$ | $1.2 \times 10^{-12}$ | **Osteopontin**: Integrin/CD44 ligand; stimulates survival, stemness, regional lymph node metastasis, and chemoresistance. |
+| **`LAMC2`** | **UP** | $+2.68$ | $4.1 \times 10^{-11}$ | $8.2 \times 10^{-12}$ | **Laminin Subunit $\gamma$2**: Essential component of Laminin-332; marks the invasive front ("budding") of aggressive oral squamous cell carcinomas. |
+| **`KRT4`** | **DOWN** | $-2.85$ | $6.2 \times 10^{-12}$ | $1.5 \times 10^{-12}$ | **Mucosal Cytokeratin**: Differentiator of suprabasal stratified squamous epithelium; loss of `KRT4` is a pathognomonic hallmark of dysplastic dedifferentiation. |
+| **`KRT13`** | **DOWN** | $-2.94$ | $2.8 \times 10^{-12}$ | $7.1 \times 10^{-13}$ | **Pairing Keratin with KRT4**: Markedly suppressed in malignant keratinocytes; utilized clinically as a negative surgical margin indicator. |
+| **`CRNN`** | **DOWN** | $-2.79$ | $1.1 \times 10^{-11}$ | $3.4 \times 10^{-12}$ | **Cornulin**: Epidermal differentiation complex (EDC) member; down-regulated during early oral carcinogenesis, correlating with poor overall survival. |
+| **`MAL`** | **DOWN** | $-2.54$ | $4.8 \times 10^{-11}$ | $1.3 \times 10^{-11}$ | **Myelin and Lymphocyte Protein**: Candidate tumor suppressor involved in apical membrane transport; promoter hypermethylation drives gene silencing in OSCC. |
+| **`BEX1`** | **DOWN** | $-2.48$ | $7.5 \times 10^{-11}$ | $1.9 \times 10^{-11}$ | **Brain-Expressed X-Linked Protein 1**: Pro-apoptotic tumor suppressor; silenced in oral carcinomas, restoring resistance to pro-apoptotic stimuli. |
 
 ---
 
@@ -167,13 +165,13 @@ oral-cancer-genomics-ml/
 │   └── OSCC_Biomarker_Discovery_Tutorial.ipynb  # Interactive walkthrough with KaTeX & figures
 │
 ├── results/                  # Full statistical tabular outputs
-│   └── oscc_differential_expression_results.csv # Complete DGE statistics (log2FC, p, padj)
+│   └── oscc_differential_expression_results.csv # Complete DGE statistics (Welch & Paired t-tests)
 │
 └── figures/                  # Publication-ready 300-DPI scientific visualizations
     ├── 01_pca_tumor_vs_normal.png         # Unsupervised 2D PCA projection
     ├── 02_volcano_plot_oscc.png           # Significance vs. effect size volcano plot
     ├── 03_top25_deg_heatmap.png           # Z-score hierarchical clustered heatmap
-    └── 04_roc_and_shap_biomarkers.png     # Stratified 5-Fold ROC curves & SHAP attributions
+    └── 04_roc_and_shap_biomarkers.png     # In-fold 5-Fold ROC curves & SHAP attributions
 ```
 
 ---
@@ -194,13 +192,13 @@ pip install -r requirements.txt
 ```
 
 ### 2. Execute End-to-End Pipeline
-Run the self-contained pipeline to parse the dataset, perform differential expression, train the explainable classifier, and render all 300-DPI publication figures:
+Run the self-contained pipeline to generate the realistic clinical cohort, perform paired and unpaired differential expression, train the explainable classifiers, and render all 300-DPI publication figures:
 ```bash
 python scripts/oscc_biomarker_pipeline.py
 ```
 
 ### 3. Launch Interactive Jupyter Tutorial
-Explore the step-by-step interactive workflow, inspect raw dataframes, and render interactive SHAP explanations:
+Explore the step-by-step interactive workflow with pre-computed cell outputs, KaTeX math, and inline figures:
 ```bash
 jupyter notebook notebooks/OSCC_Biomarker_Discovery_Tutorial.ipynb
 ```

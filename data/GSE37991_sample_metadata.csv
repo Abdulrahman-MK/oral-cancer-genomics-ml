@@ -1,81 +1,81 @@
-sample_id,patient_id,title,sample_type,anatomic_site,histology
-GSM931551,Patient_01,T1 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931552,Patient_02,T2 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931553,Patient_03,T3 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931554,Patient_04,T4 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931555,Patient_05,T5 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931556,Patient_06,T6 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931557,Patient_07,T7 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931558,Patient_08,T8 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931559,Patient_09,T9 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931560,Patient_10,T10 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931561,Patient_11,T11 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931562,Patient_12,T12 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931563,Patient_13,T13 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931564,Patient_14,T14 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931565,Patient_15,T15 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931566,Patient_16,T16 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931567,Patient_17,T17 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931568,Patient_18,T18 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931569,Patient_19,T19 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931570,Patient_20,T20 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931571,Patient_21,T21 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931572,Patient_22,T22 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931573,Patient_23,T23 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931574,Patient_24,T24 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931575,Patient_25,T25 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931576,Patient_26,T26 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931577,Patient_27,T27 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931578,Patient_28,T28 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931579,Patient_29,T29 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931580,Patient_30,T30 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931581,Patient_31,T31 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931582,Patient_32,T32 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931583,Patient_33,T33 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931584,Patient_34,T34 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931585,Patient_35,T35 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931586,Patient_36,T36 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931587,Patient_37,T37 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931588,Patient_38,T38 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931589,Patient_39,T39 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931590,Patient_40,T40 OSCC,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Oral Squamous Cell Carcinoma
-GSM931591,Patient_01,N1 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931592,Patient_02,N2 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931593,Patient_03,N3 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931594,Patient_04,N4 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931595,Patient_05,N5 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931596,Patient_06,N6 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931597,Patient_07,N7 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931598,Patient_08,N8 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931599,Patient_09,N9 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931600,Patient_10,N10 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931601,Patient_11,N11 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931602,Patient_12,N12 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931603,Patient_13,N13 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931604,Patient_14,N14 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931605,Patient_15,N15 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931606,Patient_16,N16 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931607,Patient_17,N17 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931608,Patient_18,N18 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931609,Patient_19,N19 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931610,Patient_20,N20 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931611,Patient_21,N21 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931612,Patient_22,N22 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931613,Patient_23,N23 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931614,Patient_24,N24 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931615,Patient_25,N25 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931616,Patient_26,N26 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931617,Patient_27,N27 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931618,Patient_28,N28 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931619,Patient_29,N29 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931620,Patient_30,N30 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931621,Patient_31,N31 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931622,Patient_32,N32 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931623,Patient_33,N33 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931624,Patient_34,N34 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931625,Patient_35,N35 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931626,Patient_36,N36 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931627,Patient_37,N37 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931628,Patient_38,N38 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931629,Patient_39,N39 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
-GSM931630,Patient_40,N40 non-OSCC,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa
+sample_id,patient_id,sample_type,anatomic_site,histology,smoking_status
+NORM_01,Patient_01,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_01,Patient_01,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_02,Patient_02,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_02,Patient_02,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_03,Patient_03,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_03,Patient_03,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_04,Patient_04,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_04,Patient_04,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_05,Patient_05,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_05,Patient_05,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_06,Patient_06,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_06,Patient_06,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_07,Patient_07,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_07,Patient_07,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_08,Patient_08,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_08,Patient_08,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_09,Patient_09,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_09,Patient_09,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_10,Patient_10,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_10,Patient_10,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_11,Patient_11,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_11,Patient_11,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_12,Patient_12,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_12,Patient_12,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_13,Patient_13,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_13,Patient_13,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_14,Patient_14,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_14,Patient_14,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_15,Patient_15,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_15,Patient_15,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_16,Patient_16,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_16,Patient_16,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_17,Patient_17,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_17,Patient_17,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_18,Patient_18,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Never
+OSCC_18,Patient_18,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_19,Patient_19,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_19,Patient_19,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_20,Patient_20,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_20,Patient_20,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_21,Patient_21,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_21,Patient_21,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_22,Patient_22,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_22,Patient_22,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_23,Patient_23,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_23,Patient_23,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_24,Patient_24,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_24,Patient_24,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_25,Patient_25,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_25,Patient_25,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_26,Patient_26,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Never
+OSCC_26,Patient_26,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_27,Patient_27,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Never
+OSCC_27,Patient_27,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_28,Patient_28,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_28,Patient_28,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_29,Patient_29,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_29,Patient_29,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_30,Patient_30,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_30,Patient_30,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_31,Patient_31,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_31,Patient_31,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_32,Patient_32,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_32,Patient_32,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_33,Patient_33,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_33,Patient_33,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_34,Patient_34,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_34,Patient_34,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_35,Patient_35,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_35,Patient_35,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Never
+NORM_36,Patient_36,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_36,Patient_36,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_37,Patient_37,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_37,Patient_37,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_38,Patient_38,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_38,Patient_38,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Former
+NORM_39,Patient_39,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Former
+OSCC_39,Patient_39,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
+NORM_40,Patient_40,Matched_Normal,Oral Cavity (Tongue / Floor of Mouth),Matched Non-Tumor Oral Mucosa,Current
+OSCC_40,Patient_40,OSCC_Tumor,Oral Cavity (Tongue / Floor of Mouth),Squamous Cell Carcinoma,Current
