@@ -1,7 +1,40 @@
+# Bytecode & Execution Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter & IDE Configurations
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Large Compressed Datasets & Binary Archives
 *.tar
 *.gz
-__pycache__/
-.venv/
-.ipynb_checkpoints/
-*.pyc
-.pytest_cache/
+*.zip
+*.7z
+
+# Secrets, Credentials & Local Environment Files
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+*.token
+*.secret
+credentials.json
+
+# OS-Specific Metadata
+.DS_Store
+Thumbs.db
+desktop.ini

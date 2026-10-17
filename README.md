@@ -110,8 +110,8 @@ $$d(u, v) = \frac{1}{|u||v|} \sum_{x \in u} \sum_{y \in v} \|x - y\|_2$$
 
 ### Machine Learning Classification & Stratified 5-Fold Cross-Validation
 To eliminate data leakage, models are trained within a strict **Stratified 5-Fold Cross-Validation** loop:
-- Feature scaling parameters ($\mu_{\text{train}}, \sigma_{\text{train}}$) are fitted strictly on the in-fold training split and applied to the test split.
-- Models: Random Forest Classifiers ($B=100$ estimators, $\text{max\_depth}=5$) and $L_1$-penalized LASSO Logistic Regression:
+- Feature scaling parameters ($\mu_{\mathrm{train}}, \sigma_{\mathrm{train}}$) are fitted strictly on the in-fold training split and applied to the test split.
+- Models: Random Forest Classifiers ($B = 100$ estimators, `max_depth = 5`) and $L_1$-penalized LASSO Logistic Regression:
 
 $$\min_{w, c} \frac{1}{N} \sum_{i=1}^N \log\left(1 + \exp\left(-y_i (w^T x_i + c)\right)\right) + \lambda \|w\|_1$$
 
