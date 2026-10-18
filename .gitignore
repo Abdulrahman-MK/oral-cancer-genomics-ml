@@ -41,3 +41,8 @@ desktop.ini
 
 # Review & Audit Dumps
 repo_review.txt
+
+# Personal Documents & Resume
+resume.*
+*resume*
+*.pdf

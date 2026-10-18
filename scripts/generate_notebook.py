@@ -150,14 +150,25 @@ plt.show()
     # Cell 4: Differential Gene Expression & Benjamini-Hochberg Math
     cells.append(nbf.v4.new_markdown_cell("""## 4. Differential Gene Expression (DGE): Welch's & Paired Student's t-Tests
 We evaluate differential expression using two complementary statistical methodologies:
-1. **Welch's Two-Sample $t$-test** (`stats.ttest_ind(equal_var=False)`): Accounts for potential variance heterogeneity between neoplastic tissue and normal mucosa without assuming equal variances.
-2. **Paired Student's $t$-test** (`stats.ttest_rel`): Exploits the paired experimental design by matching each patient's primary OSCC tumor directly with their normal mucosal control, eliminating inter-individual genetic background shifts:
 
-$$t_{\\text{paired}} = \\frac{\\bar{D}}{\\sqrt{s_D^2 / N}}, \\quad D_i = X_{i, \\text{Tumor}} - X_{i, \\text{Normal}}$$
+### 1. Welch's Two-Sample $t$-Test (Unpaired, Unequal Variance)
+
+$$
+t_g = \\frac{\\bar{X}_{g, \\text{Tumor}} - \\bar{X}_{g, \\text{Normal}}}{\\sqrt{\\frac{s_{g, \\text{Tumor}}^2}{N_{\\text{Tumor}}} + \\frac{s_{g, \\text{Normal}}^2}{N_{\\text{Normal}}}}}
+$$
+
+### 2. Paired Student's $t$-Test (Matched Patient Biopsies)
+
+$$
+t_{\\text{paired}, g} = \\frac{\\bar{D}_g}{\\sqrt{s_{D, g}^2 / N}}, \\quad D_{ig} = X_{ig, \\text{Tumor}} - X_{ig, \\text{Normal}}
+$$
 
 ### Multiple Testing Correction (Benjamini-Hochberg FDR)
 To control the False Discovery Rate (FDR) at $\\alpha = 0.01$ across $M = 2,500$ simultaneous hypotheses:
-$$q_{(i)} = \\min_{k \\ge i} \\left( \\frac{M}{k} p_{(k)} \\right)$$
+
+$$
+q_{(i)} = \\min_{k \\ge i} \\left( \\frac{M}{k} p_{(k)} \\right)
+$$
 """))
 
     cells.append(nbf.v4.new_code_cell("""# Pair matched patient samples
@@ -258,7 +269,11 @@ plt.show()
     # Cell 6: Clustered Heatmap
     cells.append(nbf.v4.new_markdown_cell("""## 6. Hierarchical Clustered Heatmap of Top 25 Biomarkers
 We standardize expression profiles across all 80 paired patient samples to $Z$-scores:
-$$Z_{ij} = \\frac{X_{ij} - \\bar{X}_i}{s_i}$$
+
+$$
+Z_{ij} = \\frac{X_{ij} - \\bar{X}_i}{s_i}
+$$
+
 and perform bidirectional agglomerative hierarchical clustering with Euclidean metric and average linkage.
 """))
 

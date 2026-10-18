@@ -50,7 +50,7 @@ Unsupervised two-dimensional projection of all paired patient transcriptomes ($N
 ---
 
 ### Figure 2: Publication-Grade Volcano Plot of Differential Expression
-Statistical significance ($-\log_{10}(\text{padj})$) plotted against biological effect size ($\log_2(\text{Fold Change})$) under strict significance thresholds ($|\log_2\text{FC}| > 1.5$, $\text{padj} < 0.01$). Hallmark oncogenic drivers (`MMP1`, `MMP3`, `INHBA`, `SPP1`, `LAMC2`) and squamous differentiation suppressors (`BEX1`, `KRT4`, `KRT13`, `CRNN`, `MAL`) are labeled with individual annotation callouts.
+Statistical significance ($`-\log_{10}(\text{padj})`$) plotted against biological effect size ($`\log_2(\text{Fold Change})`$) under strict significance thresholds ($`|\log_2\text{FC}| \ge 1.5`$, $`\text{padj} < 0.01`$). Hallmark oncogenic drivers (`MMP1`, `MMP3`, `INHBA`, `SPP1`, `LAMC2`) and squamous differentiation suppressors (`BEX1`, `KRT4`, `KRT13`, `CRNN`, `MAL`) are labeled with individual annotation callouts.
 
 ![Figure 2: Volcano Plot](figures/02_volcano_plot_oscc.png)
 
@@ -82,28 +82,42 @@ To mirror real biopsy profiles rather than synthetic perfection, the cohort incl
 
 ### Differential Gene Expression (Welch & Paired Student's t-Tests)
 We compute two complementary parametric hypothesis tests for each gene $g$:
-1. **Welch's Two-Sample $t$-test** (unpaired, unequal variance assumption):
-   $$t_g = \frac{\bar{X}_{g, \text{Tumor}} - \bar{X}_{g, \text{Normal}}}{\sqrt{\frac{s_{g, \text{Tumor}}^2}{N_{\text{Tumor}}} + \frac{s_{g, \text{Normal}}^2}{N_{\text{Normal}}}}}$$
-2. **Paired Student's $t$-test** (matching each patient's tumor directly with their normal control):
-   $$t_{\text{paired}, g} = \frac{\bar{D}_g}{\sqrt{s_{D, g}^2 / N}}, \quad D_{ig} = X_{ig, \text{Tumor}} - X_{ig, \text{Normal}}$$
+
+#### 1. Welch's Two-Sample $t$-Test (Unpaired, Unequal Variance)
+
+$$
+t_g = \frac{\bar{X}_{g, \text{Tumor}} - \bar{X}_{g, \text{Normal}}}{\sqrt{\frac{s_{g, \text{Tumor}}^2}{N_{\text{Tumor}}} + \frac{s_{g, \text{Normal}}^2}{N_{\text{Normal}}}}}
+$$
+
+#### 2. Paired Student's $t$-Test (Matched Patient Biopsies)
+
+$$
+t_{\text{paired}, g} = \frac{\bar{D}_g}{\sqrt{s_{D, g}^2 / N}}, \quad D_{ig} = X_{ig, \text{Tumor}} - X_{ig, \text{Normal}}
+$$
 
 Both $p$-values (`p_value` and `p_value_paired`) are recorded in [results/oscc_differential_expression_results.csv](results/oscc_differential_expression_results.csv).
 
 ### Benjamini-Hochberg False Discovery Rate (FDR)
 To strictly constrain the expected proportion of false positive discoveries across $M = 2,500$ simultaneous hypothesis tests, raw two-tailed $p$-values are sorted in ascending order $p_{(1)} \le p_{(2)} \le \dots \le p_{(M)}$ and adjusted via the Benjamini-Hochberg (BH) step-up procedure:
 
-$$q_{(i)} = \min_{k \ge i} \left( \frac{M}{k} p_{(k)} \right)$$
+$$
+q_{(i)} = \min_{k \ge i} \left( \frac{M}{k} p_{(k)} \right)
+$$
 
-Genes satisfying both $q_g \le 0.01$ and $|\log_2(\text{FC}_g)| \ge 1.5$ are designated as statistically significant differentially expressed genes (DEGs).
+Genes satisfying both $`q_g \le 0.01`$ and $`|\log_2(\text{FC}_g)| \ge 1.5`$ are designated as statistically significant differentially expressed genes (DEGs).
 
 ### Z-Score Normalization & Hierarchical Clustering
 For unsupervised expression pattern discovery, gene expression vectors across all $N=80$ samples are standardized to unit variance:
 
-$$Z_{gj} = \frac{X_{gj} - \mu_g}{\sigma_g}$$
+$$
+Z_{gj} = \frac{X_{gj} - \mu_g}{\sigma_g}
+$$
 
 Agglomerative hierarchical clustering is performed across both genes and patient samples using Euclidean pairwise distance matrices $D(u, v) = \|u - v\|_2$ and average linkage update criteria:
 
-$$d(u, v) = \frac{1}{|u||v|} \sum_{x \in u} \sum_{y \in v} \|x - y\|_2$$
+$$
+d(u, v) = \frac{1}{|u||v|} \sum_{x \in u} \sum_{y \in v} \|x - y\|_2
+$$
 
 ### Strict In-Fold Feature Selection & Cross-Validation
 To eliminate out-of-fold data leakage:
@@ -113,16 +127,22 @@ To eliminate out-of-fold data leakage:
   - **Random Forest**: $B=100$ estimators, `max_depth = 5`. Cross-validated $\text{Mean ROC-AUC} = 0.984 \pm 0.024$ (Sensitivity: 92.5%, Specificity: 92.5%).
   - **$L_1$-LASSO Logistic Regression**: $C = 0.5$, `solver='liblinear'`. Cross-validated $\text{Mean ROC-AUC} = 0.963 \pm 0.047$ (Sensitivity: 80.0%, Specificity: 92.5%).
 
-$$\min_{w, c} \frac{1}{N} \sum_{i=1}^N \log\left(1 + \exp\left(-y_i (w^T x_i + c)\right)\right) + \lambda \|w\|_1$$
+$$
+\min_{w, c} \frac{1}{N} \sum_{i=1}^N \log\left(1 + \exp\left(-y_i (w^T x_i + c)\right)\right) + \lambda \|w\|_1
+$$
 
 ### Explainable AI with Shapley Additive Explanations (SHAP)
 To transcend black-box predictions and provide clinical interpretability, feature attributions are computed using coalitional game theory via `shap.TreeExplainer`. The Shapley attribution $\phi_i$ represents the weighted marginal contribution of gene $i$ across all possible feature subsets $S \subseteq F \setminus \{i\}$:
 
-$$\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{i\}) - f_x(S) \right]$$
+$$
+\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{i\}) - f_x(S) \right]
+$$
 
 Biomarkers are prioritized by their global mean absolute SHAP impact:
 
-$$I_i = \frac{1}{N} \sum_{j=1}^N |\phi_i(x_j)|$$
+$$
+I_i = \frac{1}{N} \sum_{j=1}^N |\phi_i(x_j)|
+$$
 
 ---
 
